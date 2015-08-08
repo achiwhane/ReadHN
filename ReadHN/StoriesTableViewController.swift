@@ -19,52 +19,7 @@ class StoriesTableViewController: UITableViewController {
         static let sID: String = "submissionids.array"
     }
 
-    // we want this to return nil in the event that we don't get a valid ID or
-    // if the item gets deleted
-    private func generateStoryFromID(id: Int, storyIndex: Int, callback: () -> ()){
-        println("\(storyIndex)")
-        let url = NSURL(string: "https://hacker-news.firebaseio.com/v0/item/\(id).json")
-        if let storyUrl = url {
-            // create an empty story
-            // tart an async session to retrieve and parse json object for story
-            let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
-            dispatch_async(queue) {
-                var session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-                let jsonRequest = session.dataTaskWithURL(storyUrl, completionHandler: { (data, response, error) -> Void in
-                    if error != nil {
-                        println("\(error.localizedDescription)")
-                    }
-                    
-                    var parseError: NSError? // just in case
-                    var jsonData: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &parseError)
-                    
-                    if parseError != nil {
-                        println("\(parseError?.localizedDescription)")
-                    }
-                    
-                    if let storyJson = jsonData as! NSDictionary? {
-                        // set the story title and url in defaults
-                        if let title = storyJson["title"] as! String? {
-                            self.defaults.setObject(title, forKey: "\(storyIndex).title")
-                        }
-                        if let url = storyJson["url"] as! String? {
-                            self.defaults.setObject(url, forKey:"\(storyIndex).url")
-                        }
-                        if let score = storyJson["score"] as! Int?{
-                            self.defaults.setObject(score, forKey: "\(storyIndex).score")
-                        }
-                        if let by = storyJson["by"] as? String {
-                            self.defaults.setObject(by, forKey: "\(storyIndex).by")
-                        }
-                    }
-                    println("loaded data for item number: \(storyIndex)")
-                })
-                jsonRequest.resume()
-            }
-        }
-    }
 
-    
 
     
     override func viewDidLoad() {
@@ -76,7 +31,7 @@ class StoriesTableViewController: UITableViewController {
                 var count = 20
                 var i = 0
                 while (i < count){
-                    self.generateStoryFromID(storyIDs[i], storyIndex: i) {
+                    self.brain.generateStoryFromID(storyIDs[i], storyIndex: i) {
                         dispatch_async(dispatch_get_main_queue(),{
                             self.tableView.reloadData()
                         })
@@ -137,7 +92,32 @@ class StoriesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("View Content", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+                case "View Content":
+                    if let wvc = segue.destinationViewController as? WebViewController {
+                        if let cell = sender as? UITableViewCell {
+                            wvc.pageTitle = cell.textLabel?.text
+                            
+                            if let cellIndexPath = self.tableView.indexPathForCell(cell) {
+                                if let cellUrl = defaults.objectForKey("\(cellIndexPath.row).url") as? String {
+                                    wvc.pageUrl = cellUrl
+                                }
+                            }
+                        }
+                    }
+                default: break
+            }
+        }
+    }
 
+
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -182,5 +162,5 @@ class StoriesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+
