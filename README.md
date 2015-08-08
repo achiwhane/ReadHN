@@ -7,6 +7,6 @@ An easy to use, clean Hacker News reader app. This is still very, very early in 
 * add tab bar controllers for each HN section (show, ask, jobs, etc.)
 * add ability to display comments using multi-touch gestures 
 
-Development Screenshots
+## Development Screenshots
 ![](http://i.imgur.com/L31d4SS.png)
 
