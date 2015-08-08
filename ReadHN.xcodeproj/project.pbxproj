@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3A8D8A661B751FE80022EE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A651B751FE80022EE14 /* AppDelegate.swift */; };
-		3A8D8A681B751FE80022EE14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A671B751FE80022EE14 /* ViewController.swift */; };
 		3A8D8A6B1B751FE80022EE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D8A691B751FE80022EE14 /* Main.storyboard */; };
 		3A8D8A6D1B751FE80022EE14 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D8A6C1B751FE80022EE14 /* Images.xcassets */; };
 		3A8D8A701B751FE80022EE14 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D8A6E1B751FE80022EE14 /* LaunchScreen.xib */; };
@@ -31,7 +30,6 @@
 		3A8D8A601B751FE80022EE14 /* ReadHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8D8A641B751FE80022EE14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A8D8A651B751FE80022EE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A8D8A671B751FE80022EE14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A8D8A6A1B751FE80022EE14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A8D8A6C1B751FE80022EE14 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3A8D8A6F1B751FE80022EE14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -81,14 +79,13 @@
 		3A8D8A621B751FE80022EE14 /* ReadHN */ = {
 			isa = PBXGroup;
 			children = (
+				3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */,
 				3A8D8A651B751FE80022EE14 /* AppDelegate.swift */,
-				3A8D8A671B751FE80022EE14 /* ViewController.swift */,
 				3A8D8A871B75351A0022EE14 /* StoriesTableViewController.swift */,
 				3A8D8A691B751FE80022EE14 /* Main.storyboard */,
 				3A8D8A6C1B751FE80022EE14 /* Images.xcassets */,
 				3A8D8A6E1B751FE80022EE14 /* LaunchScreen.xib */,
 				3A8D8A631B751FE80022EE14 /* Supporting Files */,
-				3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */,
 			);
 			path = ReadHN;
 			sourceTree = "<group>";
@@ -218,7 +215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A8D8A681B751FE80022EE14 /* ViewController.swift in Sources */,
 				3A8D8A661B751FE80022EE14 /* AppDelegate.swift in Sources */,
 				3A8D8A881B75351A0022EE14 /* StoriesTableViewController.swift in Sources */,
 				3A8D8A861B75200C0022EE14 /* HackerNewsBrain.swift in Sources */,
