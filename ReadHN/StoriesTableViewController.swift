@@ -74,7 +74,16 @@ class StoriesTableViewController: UITableViewController, UITableViewDelegate, UI
                             self.defaults.setObject(title, forKey: "\(storyIndex).title")
                         }
                         if let url = storyJson["url"] as! String? {
-                            self.defaults.setObject(url, forKey:"\(storyIndex).url")
+                            // self-posts in HN return empty URL params in the JSON, so
+                            // we simply create the link using the storyID
+                            // I'll change this to natively display the self-post when I start
+                            // working on comments
+                            if url == ""{
+                                var alternateUrl = "https://news.ycombinator.com/item?id=\(id)"
+                                self.defaults.setObject(alternateUrl, forKey:"\(storyIndex).url")
+                            } else {
+                                self.defaults.setObject(url, forKey:"\(storyIndex).url")
+                            }
                         }
                         if let score = storyJson["score"] as! Int?{
                             self.defaults.setObject(score, forKey: "\(storyIndex).score")
@@ -161,6 +170,7 @@ class StoriesTableViewController: UITableViewController, UITableViewDelegate, UI
                             if let cellIndexPath = self.tableView.indexPathForCell(cell) {
                                 if let cellUrl = defaults.objectForKey("\(cellIndexPath.row).url") as? String {
                                     wvc.pageUrl = cellUrl
+                                    println(cellUrl)
                                 }
                             }
                         }
