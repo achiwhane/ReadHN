@@ -13,5 +13,5 @@ An easy to use, clean Hacker News reader app. This is still very, very early in 
 * links aren't properly cached -- currently using NSUserDefaults
 
 ## Development Screenshots
-![](http://i.imgur.com/Gv56XvA.png)
+![](http://i.imgur.com/yibtsW1.png)
 
