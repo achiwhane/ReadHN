@@ -10,7 +10,7 @@ import UIKit
 
 class StoriesTableViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let numberStories = 20
+    var numberStories = 20
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var brain = HackerNewsBrain()
@@ -26,17 +26,19 @@ class StoriesTableViewController: UITableViewController, UITableViewDelegate, UI
     }
     
     func refresh() {
+        println("\(numberStories)")
         brain.startConnection() {
             let storyIDs = self.defaults.objectForKey(Key.sID) as? [Int] ?? []
             println("\(storyIDs.count)")
             if storyIDs.count > 0{
-                var count = 20
+                var count = self.numberStories
                 var i = 0
                 while (i < count){
                     self.generateStoryFromID(storyIDs[i], storyIndex: i)
                     i++
                 }
             }
+
         }
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
@@ -48,7 +50,6 @@ class StoriesTableViewController: UITableViewController, UITableViewDelegate, UI
     }
     
     func generateStoryFromID(id: Int, storyIndex: Int){
-        println("\(storyIndex)")
         let url = NSURL(string: "https://hacker-news.firebaseio.com/v0/item/\(id).json")
         if let storyUrl = url {
             // create an empty story
@@ -95,11 +96,11 @@ class StoriesTableViewController: UITableViewController, UITableViewDelegate, UI
                     println("loaded data for item number: \(storyIndex)")
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        
                         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: storyIndex, inSection: 0)) {
                             self.formatCell(cell, atRow: storyIndex)
                         }
                         self.tableView.reloadData()
+                    
                     }
                 })
                 jsonRequest.resume()
@@ -149,8 +150,9 @@ class StoriesTableViewController: UITableViewController, UITableViewDelegate, UI
 
         let dequeued: AnyObject = tableView.dequeueReusableCellWithIdentifier("storyCell", forIndexPath: indexPath)
         let cell = dequeued as! UITableViewCell
-        
+
         formatCell(cell, atRow: indexPath.row)
+        
         
         return cell
     }
@@ -171,6 +173,11 @@ class StoriesTableViewController: UITableViewController, UITableViewDelegate, UI
                                 if let cellUrl = defaults.objectForKey("\(cellIndexPath.row).url") as? String {
                                     wvc.pageUrl = cellUrl
                                     println(cellUrl)
+                                }
+                                
+                                if cellIndexPath.row == self.numberStories - 1 {
+                                    numberStories += 20
+                                    refresh()
                                 }
                             }
                         }
