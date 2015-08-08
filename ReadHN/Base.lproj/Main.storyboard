@@ -205,6 +205,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="sCf-oj-1ky" kind="show" identifier="View ShowHN Content" id="wEY-fL-ei8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -213,9 +216,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Show HN" id="J8g-Hp-R80"/>
-                    <connections>
-                        <segue destination="sCf-oj-1ky" kind="show" identifier="View ShowHN Content" id="n2s-PP-W71"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wye-5f-0eQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -304,7 +304,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="n2s-PP-W71"/>
+        <segue reference="wEY-fL-ei8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
 </document>

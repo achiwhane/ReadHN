@@ -22,7 +22,6 @@ class ShowHNStoriesTableViewContoller: StoriesTableViewController{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            println(identifier)
             switch identifier {
             case "View ShowHN Content":
                 if let wvc = segue.destinationViewController as? WebViewController {
