@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3A1DD5A41B75954700825DB4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DD5A31B75954700825DB4 /* WebViewController.swift */; };
+		3A89DA721B767D3100F005FC /* NewStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA711B767D3100F005FC /* NewStoriesTableViewController.swift */; };
+		3A89DA741B76817100F005FC /* ShowHNStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */; };
+		3A89DA761B76828300F005FC /* AskHNStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */; };
 		3A8D8A661B751FE80022EE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A651B751FE80022EE14 /* AppDelegate.swift */; };
 		3A8D8A6B1B751FE80022EE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D8A691B751FE80022EE14 /* Main.storyboard */; };
 		3A8D8A6D1B751FE80022EE14 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D8A6C1B751FE80022EE14 /* Images.xcassets */; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		3A1DD5A31B75954700825DB4 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		3A89DA711B767D3100F005FC /* NewStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStoriesTableViewController.swift; sourceTree = "<group>"; };
+		3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowHNStoriesTableViewController.swift; sourceTree = "<group>"; };
+		3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskHNStoriesTableViewController.swift; sourceTree = "<group>"; };
 		3A8D8A601B751FE80022EE14 /* ReadHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8D8A641B751FE80022EE14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A8D8A651B751FE80022EE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 				3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */,
 				3A8D8A651B751FE80022EE14 /* AppDelegate.swift */,
 				3A8D8A871B75351A0022EE14 /* StoriesTableViewController.swift */,
+				3A89DA711B767D3100F005FC /* NewStoriesTableViewController.swift */,
+				3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */,
+				3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */,
 				3A8D8A691B751FE80022EE14 /* Main.storyboard */,
 				3A1DD5A31B75954700825DB4 /* WebViewController.swift */,
 				3A8D8A6C1B751FE80022EE14 /* Images.xcassets */,
@@ -220,7 +229,10 @@
 			files = (
 				3A8D8A661B751FE80022EE14 /* AppDelegate.swift in Sources */,
 				3A8D8A881B75351A0022EE14 /* StoriesTableViewController.swift in Sources */,
+				3A89DA741B76817100F005FC /* ShowHNStoriesTableViewController.swift in Sources */,
 				3A8D8A861B75200C0022EE14 /* HackerNewsBrain.swift in Sources */,
+				3A89DA721B767D3100F005FC /* NewStoriesTableViewController.swift in Sources */,
+				3A89DA761B76828300F005FC /* AskHNStoriesTableViewController.swift in Sources */,
 				3A1DD5A41B75954700825DB4 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

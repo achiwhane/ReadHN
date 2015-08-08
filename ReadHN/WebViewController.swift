@@ -17,7 +17,6 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let url = NSURL(string: pageUrl!){
             let request = NSURLRequest(URL: url)
             webView.loadRequest(request)
@@ -25,6 +24,8 @@ class WebViewController: UIViewController {
                 self.title = pageTitle
             }
         }
+        
+        webView.scalesPageToFit = true
         
 
         // Do any additional setup after loading the view.
