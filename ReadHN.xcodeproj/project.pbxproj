@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A1DD5A41B75954700825DB4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DD5A31B75954700825DB4 /* WebViewController.swift */; };
+		3A3216631B769C51005322BD /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3216621B769C51005322BD /* TabBarController.swift */; };
 		3A89DA721B767D3100F005FC /* NewStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA711B767D3100F005FC /* NewStoriesTableViewController.swift */; };
 		3A89DA741B76817100F005FC /* ShowHNStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */; };
 		3A89DA761B76828300F005FC /* AskHNStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		3A1DD5A31B75954700825DB4 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		3A3216621B769C51005322BD /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3A89DA711B767D3100F005FC /* NewStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStoriesTableViewController.swift; sourceTree = "<group>"; };
 		3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowHNStoriesTableViewController.swift; sourceTree = "<group>"; };
 		3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskHNStoriesTableViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */,
 				3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */,
 				3A8D8A691B751FE80022EE14 /* Main.storyboard */,
+				3A3216621B769C51005322BD /* TabBarController.swift */,
 				3A1DD5A31B75954700825DB4 /* WebViewController.swift */,
 				3A8D8A6C1B751FE80022EE14 /* Images.xcassets */,
 				3A8D8A6E1B751FE80022EE14 /* LaunchScreen.xib */,
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8D8A661B751FE80022EE14 /* AppDelegate.swift in Sources */,
+				3A3216631B769C51005322BD /* TabBarController.swift in Sources */,
 				3A8D8A881B75351A0022EE14 /* StoriesTableViewController.swift in Sources */,
 				3A89DA741B76817100F005FC /* ShowHNStoriesTableViewController.swift in Sources */,
 				3A8D8A861B75200C0022EE14 /* HackerNewsBrain.swift in Sources */,

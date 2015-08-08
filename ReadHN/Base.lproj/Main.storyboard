@@ -8,7 +8,7 @@
         <scene sceneID="EmY-Zc-Au4">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="bnx-Nw-liz" customClass="StoriesTableViewController" customModule="ReadHN" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="CRQ-r7-WQb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="CRQ-r7-WQb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,12 +56,12 @@
         <scene sceneID="AVc-qY-Egx">
             <objects>
                 <tableViewController id="iSQ-21-wBx" customClass="NewStoriesTableViewController" customModule="ReadHN" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rbi-7j-fwt">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rbi-7j-fwt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="storyCell" textLabel="06k-4a-6k6" detailTextLabel="Buf-AO-wLX" style="IBUITableViewCellStyleSubtitle" id="c3w-Pc-SdC">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="storyCell" textLabel="06k-4a-6k6" detailTextLabel="Buf-AO-wLX" style="IBUITableViewCellStyleSubtitle" id="c3w-Pc-SdC">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c3w-Pc-SdC" id="q6d-cB-sg0">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -112,18 +112,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fY-25-7vx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4556" y="357"/>
+            <point key="canvasLocation" x="4644" y="653"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="muO-Y9-uhq">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WL3-dB-glg" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WL3-dB-glg" customClass="TabBarController" customModule="ReadHN" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="YI4-Ft-4k1">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" itemPositioning="centered" id="YI4-Ft-4k1">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="IUI-ai-Iiw" kind="relationship" relationship="viewControllers" id="6o3-zq-T43"/>
@@ -134,18 +134,18 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXY-QB-voK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2287" y="357"/>
+            <point key="canvasLocation" x="2151" y="677"/>
         </scene>
-        <!--Hot-->
+        <!--Top-->
         <scene sceneID="hU9-Pe-8bQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IUI-ai-Iiw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Hot" id="k6Z-We-buc"/>
+                    <tabBarItem key="tabBarItem" title="Top" id="k6Z-We-buc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Lmi-n8-K9x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -165,7 +165,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Pt9-aK-0p9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -180,12 +180,12 @@
         <scene sceneID="I9e-ef-O45">
             <objects>
                 <tableViewController id="Z5C-5i-EhN" customClass="ShowHNStoriesTableViewContoller" customModule="ReadHN" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="5sR-ue-2pZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="5sR-ue-2pZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="storyCell" textLabel="RkR-Mz-yS4" detailTextLabel="25B-or-Yh1" style="IBUITableViewCellStyleSubtitle" id="rHp-HA-wnq">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="storyCell" textLabel="RkR-Mz-yS4" detailTextLabel="25B-or-Yh1" style="IBUITableViewCellStyleSubtitle" id="rHp-HA-wnq">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rHp-HA-wnq" id="hEK-uK-J8e">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -229,7 +229,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Oa7-83-4aK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="Z5C-5i-EhN" kind="relationship" relationship="rootViewController" id="dJi-Da-cuH"/>
@@ -247,7 +247,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="vLy-69-Had">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="iXR-v3-JtU" kind="relationship" relationship="rootViewController" id="Spz-QU-xBl"/>
@@ -261,12 +261,12 @@
         <scene sceneID="gof-59-9V4">
             <objects>
                 <tableViewController id="iXR-v3-JtU" customClass="AskHNStoriesTableViewContoller" customModule="ReadHN" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wj4-sF-KHF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wj4-sF-KHF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="storyCell" textLabel="bgk-gh-KcT" detailTextLabel="y2d-mt-wzI" style="IBUITableViewCellStyleSubtitle" id="MQA-oK-NIc">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="storyCell" textLabel="bgk-gh-KcT" detailTextLabel="y2d-mt-wzI" style="IBUITableViewCellStyleSubtitle" id="MQA-oK-NIc">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MQA-oK-NIc" id="1b0-sN-67c">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -304,7 +304,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wEY-fL-ei8"/>
+        <segue reference="gPM-Qk-dK3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
 </document>

@@ -23,11 +23,15 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.layoutMargins = UIEdgeInsetsZero
         initDelegate("https://hacker-news.firebaseio.com/v0/topstories.json")
         initRefreshControl()
         refresh()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        refresh()
+    }
     // refreshes the table view
     func refresh() {
         println("\(numberStories)")
@@ -84,7 +88,13 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                 tempStr += "\(score) point(s) | "
             }
             if let user = self.defaults.objectForKey("\(row).by") as? String {
-                tempStr += "by \(user)"
+                tempStr += "by \(user) | "
+            }
+            if let url = self.defaults.objectForKey("\(row).url") as? String {
+                if let fmtNsUrl = NSURL(string: url) {
+                    let reducedUrl = fmtNsUrl.host!
+                    tempStr += reducedUrl
+                }
             }
             
             cell.detailTextLabel?.text = tempStr
@@ -129,10 +139,6 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                                     println(cellUrl)
                                 }
                                 
-                                if cellIndexPath.row == self.numberStories - 1 {
-                                    numberStories += 20
-                                    refresh()
-                                }
                             }
                         }
                     }
