@@ -1,12 +1,17 @@
 # ReadHN
 
-An easy to use, clean Hacker News reader app. This is still very, very early in its development and currently only shows a list of items from the main page. I still have to add the WebViews for each link, comments, and more. 
+An easy to use, clean Hacker News reader app. This is still very, very early in its development and is awash with issues/bugs. Feel free to send a pull request or open an issue if you find something that doesn't work.
+
 
 ## TODO:
-* add proper refreshing of text cells
-* add tab bar controllers for each HN section (show, ask, jobs, etc.)
-* add ability to display comments using multi-touch gestures 
+* add ability to view comments
+* switch to core data
+* add icons to each tab
+
+## Issues:
+* have to refresh each time tab is switched or else links may not correspond to title
+* links aren't properly cached -- currently using NSUserDefaults
 
 ## Development Screenshots
-![](http://i.imgur.com/L31d4SS.png)
+![](http://i.imgur.com/Gv56XvA.png)
 
