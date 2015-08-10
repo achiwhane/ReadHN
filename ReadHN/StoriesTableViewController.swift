@@ -34,6 +34,8 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     }
     // refreshes the table view
     func refresh() {
+        tableView.reloadData()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         println("\(numberStories)")
         brain.startConnection() {
             let storyIDs = self.defaults.objectForKey(Key.sID) as? [Int] ?? []
@@ -54,6 +56,9 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         self.refreshControl?.endRefreshing()
     }
     
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return CGFloat(80.0)
+    }
     
     // sets up the pull-down to refresh control -- used only in viewDidLoad()
     func initRefreshControl() {

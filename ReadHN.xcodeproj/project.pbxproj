@@ -19,6 +19,7 @@
 		3A8D8A7C1B751FE80022EE14 /* ReadHNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A7B1B751FE80022EE14 /* ReadHNTests.swift */; };
 		3A8D8A861B75200C0022EE14 /* HackerNewsBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */; };
 		3A8D8A881B75351A0022EE14 /* StoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A871B75351A0022EE14 /* StoriesTableViewController.swift */; };
+		3AE2129A1B78253500B4B7EE /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE212991B78253500B4B7EE /* StoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		3A8D8A7B1B751FE80022EE14 /* ReadHNTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadHNTests.swift; sourceTree = "<group>"; };
 		3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerNewsBrain.swift; sourceTree = "<group>"; };
 		3A8D8A871B75351A0022EE14 /* StoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesTableViewController.swift; sourceTree = "<group>"; };
+		3AE212991B78253500B4B7EE /* StoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */,
 				3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */,
 				3A8D8A691B751FE80022EE14 /* Main.storyboard */,
+				3AE212991B78253500B4B7EE /* StoryTableViewCell.swift */,
 				3A3216621B769C51005322BD /* TabBarController.swift */,
 				3A1DD5A31B75954700825DB4 /* WebViewController.swift */,
 				3A8D8A6C1B751FE80022EE14 /* Images.xcassets */,
@@ -232,6 +235,7 @@
 			files = (
 				3A8D8A661B751FE80022EE14 /* AppDelegate.swift in Sources */,
 				3A3216631B769C51005322BD /* TabBarController.swift in Sources */,
+				3AE2129A1B78253500B4B7EE /* StoryTableViewCell.swift in Sources */,
 				3A8D8A881B75351A0022EE14 /* StoriesTableViewController.swift in Sources */,
 				3A89DA741B76817100F005FC /* ShowHNStoriesTableViewController.swift in Sources */,
 				3A8D8A861B75200C0022EE14 /* HackerNewsBrain.swift in Sources */,
