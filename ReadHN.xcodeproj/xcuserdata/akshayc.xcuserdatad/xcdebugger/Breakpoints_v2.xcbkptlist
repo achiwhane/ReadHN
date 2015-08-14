@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReadHN/HackerNewsBrain.swift"
-            timestampString = "460750032.421447"
+            filePath = "ReadHN/NewStoriesTableViewController.swift"
+            timestampString = "460753409.562525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "HackerNewsBrain"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "NewStoriesTableViewController"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,14 +25,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReadHN/NewStoriesTableViewController.swift"
-            timestampString = "460753409.562525"
+            filePath = "ReadHN/StoriesTableViewController.swift"
+            timestampString = "461274877.526697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "NewStoriesTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "refresh()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

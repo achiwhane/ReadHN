@@ -9,16 +9,24 @@
 import UIKit
 
 class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
+
+    struct Key {
+        static let sID: String = "submissionids.array"
+    }
     
+    struct StoryContents {
+        var title: String
+        var subtitle: String
+    }
+    
+    var storyTableCellData = [StoryContents?](count: 20, repeatedValue: nil)
     var numberStories = 20
     let defaults = NSUserDefaults.standardUserDefaults()
     var categoryUrl = ""
     
-    var brain = HackerNewsBrain()
     
-    struct Key {
-        static let sID: String = "submissionids.array"
-    }
+    var brain = HackerNewsBrain()
+
     
     
     override func viewDidLoad() {
@@ -45,7 +53,12 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                 var i = 0
                 while (i < count){
                     self.brain.generateStoryFromID(storyIDs[i], storyIndex: i) {
-                        self.formatTableDataAfterStoryGeneration($0)
+                        let storyData = self.formatCellContents(atRow: $0)
+                        println(storyData)
+                        
+                        if let title = storyData.title, subtitle = storyData.subtitle {
+                            self.storyTableCellData[$0] = StoryContents(title: title, subtitle: subtitle)
+                        }
                     }
                     i++
                 }
@@ -76,19 +89,18 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     func formatTableDataAfterStoryGeneration(index: Int) {
         dispatch_async(dispatch_get_main_queue()) {
             if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) {
-                self.formatCell(cell, atRow: index)
+                self.formatCellContents(atRow: index)
             }
         }
     }
     
     
     // formats a cell's title and subtitle at a given row
-    private func formatCell(cell: UITableViewCell, atRow row: Int) {
+    private func formatCellContents(atRow row: Int) -> (title: String?, subtitle: String?){
+        var res_title = ""
+        var tempStr = ""
         if let title = self.defaults.objectForKey("\(row).title") as? String {
-            cell.textLabel?.text = title
-            cell.textLabel?.font = UIFont.boldSystemFontOfSize(CGFloat(16.0))
-            
-            var tempStr = ""
+            res_title = title
             if let score = self.defaults.objectForKey("\(row).score") as? Int {
                 tempStr += "\(score) point(s) | "
             }
@@ -101,11 +113,9 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                     tempStr += reducedUrl
                 }
             }
-            
-            cell.detailTextLabel?.text = tempStr
         }
+        return (res_title, tempStr)
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -122,7 +132,16 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
 
         let dequeued: AnyObject = tableView.dequeueReusableCellWithIdentifier("storyCell", forIndexPath: indexPath)
         let cell = dequeued as! UITableViewCell
-        formatCell(cell, atRow: indexPath.row)
+        
+        let cellData = storyTableCellData[indexPath.row]
+        println(cellData)
+        if let title = cellData?.title, subtitle = cellData?.subtitle {
+            cell.textLabel?.text = title
+            cell.detailTextLabel?.text = subtitle
+        } else {
+            cell.textLabel?.text = "Loading...."
+            cell.detailTextLabel?.text = "Loading..."
+        }
         return cell
     }
     
