@@ -36,11 +36,6 @@ class NewStoriesTableViewController: StoriesTableViewController{
                                 wvc.pageUrl = cellUrl
                                 println(cellUrl)
                             }
-                            
-                            if cellIndexPath.row == self.numberStories - 1 {
-                                numberStories += 20
-                                refresh()
-                            }
                         }
                     }
                 }

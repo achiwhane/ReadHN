@@ -32,30 +32,29 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.layoutMargins = UIEdgeInsetsZero
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
         initDelegate("https://hacker-news.firebaseio.com/v0/topstories.json")
         initRefreshControl()
         refresh()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         refresh()
     }
+    
     // refreshes the table view
     func refresh() {
         tableView.reloadData()
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        println("\(numberStories)")
         brain.startConnection() {
             let storyIDs = self.defaults.objectForKey(Key.sID) as? [Int] ?? []
-            println("\(storyIDs.count)")
             if storyIDs.count > 0{
                 var count = self.numberStories
                 var i = 0
                 while (i < count){
                     self.brain.generateStoryFromID(storyIDs[i], storyIndex: i) {
-                        let storyData = self.formatCellContents(atRow: $0)
-                        println(storyData)
-                        
+                        let storyData = self.formatCellContents(atRow: $0)                        
                         if let title = storyData.title, subtitle = storyData.subtitle {
                             self.storyTableCellData[$0] = StoryContents(title: title, subtitle: subtitle)
                         }
@@ -129,12 +128,10 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         let dequeued: AnyObject = tableView.dequeueReusableCellWithIdentifier("storyCell", forIndexPath: indexPath)
         let cell = dequeued as! UITableViewCell
         
         let cellData = storyTableCellData[indexPath.row]
-        println(cellData)
         if let title = cellData?.title, subtitle = cellData?.subtitle {
             cell.textLabel?.text = title
             cell.detailTextLabel?.text = subtitle

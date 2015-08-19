@@ -13,6 +13,7 @@ class AskHNStoriesTableViewContoller: StoriesTableViewController{
         super.viewDidLoad()
         updateUI()
     }
+    
     private func updateUI() {
         super.categoryUrl = "https://hacker-news.firebaseio.com/v0/askstories.json"
         super.brain.delegate = self
@@ -21,7 +22,6 @@ class AskHNStoriesTableViewContoller: StoriesTableViewController{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            println(identifier)
             switch identifier {
             case "View AskHN Content":
                 if let wvc = segue.destinationViewController as? WebViewController {
@@ -29,14 +29,10 @@ class AskHNStoriesTableViewContoller: StoriesTableViewController{
                         wvc.pageTitle = cell.textLabel?.text
                         
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
+                            println(cellIndexPath)
                             if let cellUrl = defaults.objectForKey("\(cellIndexPath.row).url") as? String {
                                 wvc.pageUrl = cellUrl
                                 println(cellUrl)
-                            }
-                            
-                            if cellIndexPath.row == self.numberStories - 1 {
-                                numberStories += 20
-                                refresh()
                             }
                         }
                     }
