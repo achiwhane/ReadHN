@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     
     struct Key {
@@ -24,8 +23,7 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     var numberStories = 20
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    @IBInspectable
-    var categoryUrl: String = ""
+    var categoryUrl: String = "https://hacker-news.firebaseio.com/v0/topstories.json"
     
     var brain = HackerNewsBrain()
     
@@ -172,9 +170,10 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         let cellData = storyTableCellData[indexPath.row]
         if let title = cellData?.title, subtitle = cellData?.subtitle {
             cell.textLabel?.text = title
+            cell.textLabel?.font = UIFont.boldSystemFontOfSize(CGFloat(16.0))
             cell.detailTextLabel?.text = subtitle
         } else {
-            cell.textLabel?.text = "Loading...."
+            cell.textLabel?.text = "Loading..."
             cell.detailTextLabel?.text = "Loading..."
         }
         return cell
