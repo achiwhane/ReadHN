@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 
 protocol StoryCategoryDelegate {
@@ -29,68 +30,26 @@ class HackerNewsBrain {
         static let sID: String = "submissionids.array"
     }
     
-    
     func startConnection(callback: () -> ()) {
         if let urlStr = delegate?.categoryUrl {
-            if let url = NSURL(string: urlStr) {
-                var session = NSURLSession.sharedSession()
-                let jsonReuest = session.dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
-                    
-                    println("in session handler")
-                    if error != nil {
-                        println("\(error.localizedDescription)")
-                    }
-                    var err: NSError?
-                    var dataArray = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSArray?
-                    if err != nil {
-                        println("\(err?.localizedDescription)")
-                    }
-                    
-                    // create a temp array of ints to hold the session ids
-                    var tempSID = [Int]()
-                    if let array = dataArray {
-                        for elem in array {
-                            tempSID.append(elem as! Int)
-                        }
-                    }
-                    
-                    // load this array into NSUserDefaults
-                    self.defaults.setObject(tempSID, forKey: Key.sID)
-                    println("done loading key")
-                    callback()
-                    
-                })
-                jsonReuest.resume()
+            Alamofire.request(.GET, urlStr).responseJSON() {
+                (_, _, data, _) in
+                self.submissionIDs = data as? [Int] ?? []
+                // load this array into NSUserDefaults
+                self.defaults.setObject(self.submissionIDs, forKey: Key.sID)
+                println("done loading key")
+                callback()
+                
             }
         }
     }
     
     // uses Firebase API to get story JSON and parse that to get title, url, etc.
     func generateStoryFromID(id: Int, storyIndex: Int, callback: (index: Int) -> ()){
-        let url = NSURL(string: "https://hacker-news.firebaseio.com/v0/item/\(id).json")
-        if let storyUrl = url {
-            // create an empty story
-            // tart an async session to retrieve and parse json object for story
-            let queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
-            dispatch_async(queue) {
-                var session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-                let jsonRequest = session.dataTaskWithURL(storyUrl, completionHandler: { (data, response, error) -> Void in
-                    if error != nil {
-                        println("\(error.localizedDescription)")
-                    }
-                    
-                    var parseError: NSError? // just in case
-                    var jsonData: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &parseError)
-                    
-                    if parseError != nil {
-                        println("\(parseError?.localizedDescription)")
-                    }
-                    
-                    self.parseStoryJson(id, storyIndex: storyIndex, jsonData: jsonData)
-                    callback(index: storyIndex)
-                })
-                jsonRequest.resume()
-            }
+        let url = "https://hacker-news.firebaseio.com/v0/item/\(id).json"
+        Alamofire.request(.GET, url).responseJSON() { (_, _, data, _) -> Void in
+            self.parseStoryJson(id, storyIndex: storyIndex, jsonData: data)
+            callback(index: storyIndex)
         }
     }
     
