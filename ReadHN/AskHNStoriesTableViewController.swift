@@ -27,13 +27,10 @@ class AskHNStoriesTableViewContoller: StoriesTableViewController{
                 if let wvc = segue.destinationViewController as? WebViewController {
                     if let cell = sender as? UITableViewCell {
                         wvc.pageTitle = cell.textLabel?.text
-                        
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
-                            println(cellIndexPath)
-                            if let cellUrl = defaults.objectForKey("\(cellIndexPath.row).url") as? String {
-                                wvc.pageUrl = cellUrl
-                                println(cellUrl)
-                            }
+                            let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0)
+                            wvc.pageUrl = data?.url
+                            println(wvc.pageUrl)
                         }
                     }
                 }

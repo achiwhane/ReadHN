@@ -13,10 +13,11 @@ import Alamofire
 protocol StoryCategoryDelegate {
     var categoryUrl: String {get set}
 }
+
+
 class HackerNewsBrain {
-    private var submissionIDs = [Int]()
+    var submissionIDs = [Int]()
     private var stories = [Story]()
-    private let defaults = NSUserDefaults.standardUserDefaults()
     
     var delegate: StoryCategoryDelegate?
     
@@ -24,7 +25,6 @@ class HackerNewsBrain {
         var title: String
         var url: String
     }
-    
     
     struct Key {
         static let sID: String = "submissionids.array"
@@ -36,7 +36,7 @@ class HackerNewsBrain {
                 (_, _, data, _) in
                 self.submissionIDs = data as? [Int] ?? []
                 // load this array into NSUserDefaults
-                self.defaults.setObject(self.submissionIDs, forKey: Key.sID)
+                defaults.setObject(self.submissionIDs, forKey: Key.sID)
                 println("done loading key")
                 callback()
                 
@@ -44,42 +44,66 @@ class HackerNewsBrain {
         }
     }
     
-    // uses Firebase API to get story JSON and parse that to get title, url, etc.
-    func generateStoryFromID(id: Int, storyIndex: Int, callback: (index: Int) -> ()){
+    func generateSubmissionForID(id: Int, callback: () -> ()) {
         let url = "https://hacker-news.firebaseio.com/v0/item/\(id).json"
         Alamofire.request(.GET, url).responseJSON() { (_, _, data, _) -> Void in
-            self.parseStoryJson(id, storyIndex: storyIndex, jsonData: data)
-            callback(index: storyIndex)
+            self.parseSubmissionJsonForID(id, jsonData: data)
+            callback()
         }
     }
     
-    // does the actual parsing of the JSON
-    func parseStoryJson(id: Int, storyIndex: Int, jsonData: AnyObject?) {
-        if let storyJson = jsonData as! NSDictionary? {
-            // set the story title and url in defaults
-            if let title = storyJson["title"] as! String? {
-                defaults.setObject(title, forKey: "\(storyIndex).title")
+    
+    func parseSubmissionJsonForID(id: Int, jsonData: AnyObject?) {
+        let submission = Submission(id: id)
+        if let theJson = jsonData as? NSDictionary {
+            if let deleted = theJson["deleted"] as? Bool {
+                submission.isDeleted = deleted
             }
-            if let url = storyJson["url"] as! String? {
-                // self-posts in HN return empty URL params in the JSON, so
-                // we simply create the link using the storyID
-                // I'll change this to natively display the self-post when I start
-                // working on comments
-                if url == ""{
-                    var alternateUrl = "https://news.ycombinator.com/item?id=\(id)"
-                    defaults.setObject(alternateUrl, forKey:"\(storyIndex).url")
-                } else {
-                    defaults.setObject(url, forKey:"\(storyIndex).url")
+            if let type = theJson["type"] as? String {
+                func setType(submissionType: Type) {
+                    submission.type = submissionType
+                }
+                switch type{
+                case "job":     setType(Type.Job)
+                case "story":   setType(Type.Story)
+                case "comment": setType(Type.Comment)
+                    
+                    // wont worry about polls for now
+                    //                  case "poll":    setType(Type.Poll)
+                    //                  case "pollopt": setType(Type.PollOpt)
+                    
+                default:        setType(Type.None)
                 }
             }
-            if let score = storyJson["score"] as! Int?{
-                defaults.setObject(score, forKey: "\(storyIndex).score")
+            if let by = theJson["by"] as? String {
+                submission.by = by
             }
-            if let by = storyJson["by"] as? String {
-                defaults.setObject(by, forKey: "\(storyIndex).by")
+            if let time = theJson["time"] as? Int {
+                submission.time = time
+            }
+            if let text = theJson["text"] as? String {
+                submission.text = text
+            }
+            if let dead = theJson["dead"] as? Bool {
+                submission.isDead = dead
+            }
+            if let parent = theJson["parent"] as? Int {
+                submission.parent = parent
+            }
+            if let kids = theJson["kids"] as? [Int] {
+                submission.kids = kids
+            }
+            if let url = theJson["url"] as? String {
+                submission.url = url
+            }
+            if let score = theJson["score"] as? Int {
+                submission.score = score
+            }
+            if let title = theJson["title"] as? String {
+                submission.title = title
             }
         }
-        println("parsed JSON for id: \(id), ind: \(storyIndex)")
+        submission.save()
+        NSLog("Wrote data for submission w/ id = \(submission.id)")
     }
-
 }

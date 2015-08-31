@@ -14,20 +14,10 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         static let sID: String = "submissionids.array"
     }
     
-    struct StoryContents {
-        var title: String
-        var subtitle: String
-    }
-    
-    var storyTableCellData = [StoryContents?](count: 20, repeatedValue: nil)
+    var storyTableCellData: [Int: Int] = [Int:Int]() // key - rowIndex, val - id
     var numberStories = 20
-    let defaults = NSUserDefaults.standardUserDefaults()
-    
     var categoryUrl: String = "https://hacker-news.firebaseio.com/v0/topstories.json"
-    
     var brain = HackerNewsBrain()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,34 +41,20 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         brain.startConnection() {
-            let storyIDs = self.defaults.objectForKey(Key.sID) as? [Int] ?? []
-            if storyIDs.count > 0{
-                var count = self.numberStories
-                var i = 0
-                while (i < count){
-                    self.brain.generateStoryFromID(storyIDs[i], storyIndex: i) {
-                        let storyData = self.formatCellContents(atRow: $0)
-                        if let title = storyData.title, subtitle = storyData.subtitle {
-                            let tempIndex = $0
-                            self.storyTableCellData[$0] = StoryContents(title: title, subtitle: subtitle)
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.refreshCell(tempIndex)
-                            }
-                        }
-                        
+            for i in 0..<self.brain.submissionIDs.count {
+                if i < self.numberStories {
+                    let id = self.brain.submissionIDs[i]
+                    self.storyTableCellData[i] = id
+                    self.brain.generateSubmissionForID(id) {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.refreshCell(i)
+                        })
                     }
-                    i++
-                }
+                } else { break }
             }
-            
         }
-        tableView.reloadData()
         refreshControl?.endRefreshing()
     }
-    
-    //    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    //        return CGFloat(100.0)
-    //    }
     
     // sets up the pull-down to refresh control -- used only in viewDidLoad()
     func initRefreshControl() {
@@ -96,7 +72,7 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         
         if isCellVisible(row) {
             tableView.beginUpdates()
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
             tableView.endUpdates()
         }
     }
@@ -107,45 +83,23 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         if let indices = visibleRows as? [NSIndexPath] {
             for rowIndex in indices {
                 if rowIndex.row == index {
-                    println("cell \(index) is VISIBLE")
                     return true
                 }
             }
         }
-        println("cell \(index) is NOT VISIBLE")
         return false
     }
     
-    // formats a specified cell on refresh
-    func formatTableDataAfterStoryGeneration(index: Int) {
-        dispatch_async(dispatch_get_main_queue()) {
-            if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) {
-                self.formatCellContents(atRow: index)
-            }
+    // formats a cell's title and subtitle at a given row
+    private func generateHeadingsforID(id: Int) -> (title: String?, subtitle: String?){
+        if let s = Submission.loadSaved(id) {
+            return (s.title, "\(s.score ?? -1) points | by \(s.by) | \(formatURL(s.url))")
         }
+        return (nil, nil)
     }
     
-    
-    // formats a cell's title and subtitle at a given row
-    private func formatCellContents(atRow row: Int) -> (title: String?, subtitle: String?){
-        var res_title = ""
-        var tempStr = ""
-        if let title = self.defaults.objectForKey("\(row).title") as? String {
-            res_title = title
-            if let score = self.defaults.objectForKey("\(row).score") as? Int {
-                tempStr += "\(score) point(s) | "
-            }
-            if let user = self.defaults.objectForKey("\(row).by") as? String {
-                tempStr += "by \(user) | "
-            }
-            if let url = self.defaults.objectForKey("\(row).url") as? String {
-                if let fmtNsUrl = NSURL(string: url) {
-                    let reducedUrl = fmtNsUrl.host!
-                    tempStr += reducedUrl
-                }
-            }
-        }
-        return (res_title, tempStr)
+    private func formatURL(url: String) -> String{
+        return NSURL(string: url)?.host ?? ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -166,9 +120,13 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let dequeued: AnyObject = tableView.dequeueReusableCellWithIdentifier("storyCell", forIndexPath: indexPath)
         let cell = dequeued as! UITableViewCell
+        // get the id associated with the row
+        // pull the title and subtitle from the id
+        // and format cell
         
-        let cellData = storyTableCellData[indexPath.row]
-        if let title = cellData?.title, subtitle = cellData?.subtitle {
+        let headings = generateHeadingsforID(storyTableCellData[indexPath.row] ?? 0)
+
+        if let title = headings.title, subtitle = headings.subtitle {
             cell.textLabel?.text = title
             cell.textLabel?.font = UIFont.boldSystemFontOfSize(CGFloat(16.0))
             cell.detailTextLabel?.text = subtitle
@@ -192,11 +150,9 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                         wvc.pageTitle = cell.textLabel?.text
                         
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
-                            if let cellUrl = defaults.objectForKey("\(cellIndexPath.row).url") as? String {
-                                wvc.pageUrl = cellUrl
-                                println(cellUrl)
-                            }
-                            
+                            let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0)
+                            wvc.pageUrl = data?.url
+                            println(wvc.pageUrl)
                         }
                     }
                 }

@@ -8,8 +8,11 @@
 
 import UIKit
 
+let defaults = NSUserDefaults.standardUserDefaults()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
 
     var window: UIWindow?
 

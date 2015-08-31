@@ -32,10 +32,9 @@ class NewStoriesTableViewController: StoriesTableViewController{
                         wvc.pageTitle = cell.textLabel?.text
                         
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
-                            if let cellUrl = defaults.objectForKey("\(cellIndexPath.row).url") as? String {
-                                wvc.pageUrl = cellUrl
-                                println(cellUrl)
-                            }
+                            let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0)
+                            wvc.pageUrl = data?.url
+                            println(wvc.pageUrl)
                         }
                     }
                 }
