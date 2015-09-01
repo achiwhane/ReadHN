@@ -34,7 +34,6 @@ class NewStoriesTableViewController: StoriesTableViewController{
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
                             let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0)
                             wvc.pageUrl = data?.url
-                            println(wvc.pageUrl)
                         }
                     }
                 }

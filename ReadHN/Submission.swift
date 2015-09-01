@@ -1,15 +1,12 @@
 //
-//  Story.swift
+//  Submission.swift
 //  ReadHN
 //
-//  Created by Akshay Chiwhane on 8/30/15.
+//  Created by Akshay Chiwhane on 9/1/15.
 //  Copyright (c) 2015 Akshay Chiwhane. All rights reserved.
 //
 
 import Foundation
-
-// a general-purpose class to encapsulate a story (i.e. a submission or comment)
-// on Hacker News
 
 enum Type {
     case Job
@@ -20,7 +17,9 @@ enum Type {
     case None // in case we get a malformed response or something
 }
 
-// see the [HN API Docs](https://github.com/HackerNews/API) for 
+// a general-purpose class to encapsulate a story (i.e. a submission or comment)
+// on Hacker News
+// see the [HN API Docs](https://github.com/HackerNews/API) for
 // more into regarding each attribute
 class Submission: NSObject, NSCoding {
     var id:         Int
@@ -36,7 +35,7 @@ class Submission: NSObject, NSCoding {
     var score:      Int // promotions don't have a score so might be nil
     var title:      String // comments don't have titles
     var descendants: Int
-//  var parts: [Submission]? -- wont consider polls for the time being
+    //  var parts: [Submission]? -- wont consider polls for the time being
     
     override init() {
         id = 0
@@ -100,7 +99,6 @@ class Submission: NSObject, NSCoding {
         if let data = defaults.objectForKey(id.description) as? NSData {
             return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Submission
         }
-        
         return nil
     }
 }

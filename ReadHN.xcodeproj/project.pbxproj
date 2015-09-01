@@ -10,7 +10,6 @@
 		3A1334221B93622C00098C33 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1334211B93622C00098C33 /* Alamofire.framework */; };
 		3A1DD5A41B75954700825DB4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1DD5A31B75954700825DB4 /* WebViewController.swift */; };
 		3A3216631B769C51005322BD /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3216621B769C51005322BD /* TabBarController.swift */; };
-		3A4395DC1B93B51C002DB7DF /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4395DB1B93B51C002DB7DF /* Submission.swift */; };
 		3A89DA721B767D3100F005FC /* NewStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA711B767D3100F005FC /* NewStoriesTableViewController.swift */; };
 		3A89DA741B76817100F005FC /* ShowHNStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */; };
 		3A89DA761B76828300F005FC /* AskHNStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */; };
@@ -20,6 +19,9 @@
 		3A8D8A701B751FE80022EE14 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A8D8A6E1B751FE80022EE14 /* LaunchScreen.xib */; };
 		3A8D8A861B75200C0022EE14 /* HackerNewsBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */; };
 		3A8D8A881B75351A0022EE14 /* StoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D8A871B75351A0022EE14 /* StoriesTableViewController.swift */; };
+		3AAD14F31B955F5100CDB04B /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD14F21B955F5100CDB04B /* Submission.swift */; };
+		3AB553A11B952B0C0017CC5F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB553A01B952B0C0017CC5F /* SwiftyJSON.framework */; };
+		3ABE4ACD1B9503E4006C493B /* GenericSubmissionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABE4ACC1B9503E4006C493B /* GenericSubmissionTableViewController.swift */; };
 		3AE2129A1B78253500B4B7EE /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE212991B78253500B4B7EE /* StoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +29,6 @@
 		3A1334211B93622C00098C33 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ReadHN/Alamofire.framework; sourceTree = "<group>"; };
 		3A1DD5A31B75954700825DB4 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3A3216621B769C51005322BD /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		3A4395DB1B93B51C002DB7DF /* Submission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
 		3A89DA711B767D3100F005FC /* NewStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStoriesTableViewController.swift; sourceTree = "<group>"; };
 		3A89DA731B76817100F005FC /* ShowHNStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowHNStoriesTableViewController.swift; sourceTree = "<group>"; };
 		3A89DA751B76828300F005FC /* AskHNStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskHNStoriesTableViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +40,9 @@
 		3A8D8A6F1B751FE80022EE14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackerNewsBrain.swift; sourceTree = "<group>"; };
 		3A8D8A871B75351A0022EE14 /* StoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesTableViewController.swift; sourceTree = "<group>"; };
+		3AAD14F21B955F5100CDB04B /* Submission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
+		3AB553A01B952B0C0017CC5F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		3ABE4ACC1B9503E4006C493B /* GenericSubmissionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericSubmissionTableViewController.swift; sourceTree = "<group>"; };
 		3AE212991B78253500B4B7EE /* StoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB553A11B952B0C0017CC5F /* SwiftyJSON.framework in Frameworks */,
 				3A1334221B93622C00098C33 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +100,7 @@
 		46364A121B939683001B6647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AB553A01B952B0C0017CC5F /* SwiftyJSON.framework */,
 				3A1334211B93622C00098C33 /* Alamofire.framework */,
 			);
 			name = Frameworks;
@@ -110,6 +116,7 @@
 				3A8D8A691B751FE80022EE14 /* Main.storyboard */,
 				3A3216621B769C51005322BD /* TabBarController.swift */,
 				3A1DD5A31B75954700825DB4 /* WebViewController.swift */,
+				3ABE4ACC1B9503E4006C493B /* GenericSubmissionTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -118,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				3A8D8A851B75200C0022EE14 /* HackerNewsBrain.swift */,
-				3A4395DB1B93B51C002DB7DF /* Submission.swift */,
+				3AAD14F21B955F5100CDB04B /* Submission.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			outputPaths = (
 			);
@@ -237,9 +245,10 @@
 				3A89DA741B76817100F005FC /* ShowHNStoriesTableViewController.swift in Sources */,
 				3A8D8A861B75200C0022EE14 /* HackerNewsBrain.swift in Sources */,
 				3A89DA721B767D3100F005FC /* NewStoriesTableViewController.swift in Sources */,
+				3AAD14F31B955F5100CDB04B /* Submission.swift in Sources */,
 				3A89DA761B76828300F005FC /* AskHNStoriesTableViewController.swift in Sources */,
+				3ABE4ACD1B9503E4006C493B /* GenericSubmissionTableViewController.swift in Sources */,
 				3A1DD5A41B75954700825DB4 /* WebViewController.swift in Sources */,
-				3A4395DC1B93B51C002DB7DF /* Submission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

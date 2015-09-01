@@ -8,11 +8,13 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 
 protocol StoryCategoryDelegate {
     var categoryUrl: String {get set}
 }
+
 
 
 class HackerNewsBrain {
@@ -51,59 +53,29 @@ class HackerNewsBrain {
             callback()
         }
     }
-    
+
     
     func parseSubmissionJsonForID(id: Int, jsonData: AnyObject?) {
-        let submission = Submission(id: id)
-        if let theJson = jsonData as? NSDictionary {
-            if let deleted = theJson["deleted"] as? Bool {
-                submission.isDeleted = deleted
-            }
-            if let type = theJson["type"] as? String {
-                func setType(submissionType: Type) {
-                    submission.type = submissionType
-                }
-                switch type{
-                case "job":     setType(Type.Job)
-                case "story":   setType(Type.Story)
-                case "comment": setType(Type.Comment)
-                    
-                    // wont worry about polls for now
-                    //                  case "poll":    setType(Type.Poll)
-                    //                  case "pollopt": setType(Type.PollOpt)
-                    
-                default:        setType(Type.None)
-                }
-            }
-            if let by = theJson["by"] as? String {
-                submission.by = by
-            }
-            if let time = theJson["time"] as? Int {
-                submission.time = time
-            }
-            if let text = theJson["text"] as? String {
-                submission.text = text
-            }
-            if let dead = theJson["dead"] as? Bool {
-                submission.isDead = dead
-            }
-            if let parent = theJson["parent"] as? Int {
-                submission.parent = parent
-            }
-            if let kids = theJson["kids"] as? [Int] {
-                submission.kids = kids
-            }
-            if let url = theJson["url"] as? String {
-                submission.url = url
-            }
-            if let score = theJson["score"] as? Int {
-                submission.score = score
-            }
-            if let title = theJson["title"] as? String {
-                submission.title = title
+        let s = Submission(id: id)
+        let json = JSON(jsonData!)
+        s.isDeleted = json["deleted"].bool ?? false
+        s.by = json["by"].string ?? ""
+        s.time = json["time"].int ?? -1
+        s.text = json["text"].string ?? "NIL"
+        s.isDead = json["dead"].bool ?? false
+        s.parent = json["parent"].int ?? -1
+        s.kids = json["kids"].arrayObject as? [Int] ?? [Int]()
+        if let url = json["url"].string {
+            if url == "" {
+                s.url = "https://news.ycombinator.com/item?id=\(id)"
+            } else {
+                s.url = url
             }
         }
-        submission.save()
-        NSLog("Wrote data for submission w/ id = \(submission.id)")
+        s.score = json["score"].int ?? -1
+        s.title = json["title"].string ?? ""
+        s.descendants = json["descendants"].int ?? -1
+        s.save()
+        NSLog("Wrote data for submission w/ id = \(s.id)")
     }
 }

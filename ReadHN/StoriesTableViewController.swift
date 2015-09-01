@@ -10,10 +10,6 @@ import UIKit
 
 class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     
-    struct Key {
-        static let sID: String = "submissionids.array"
-    }
-    
     var storyTableCellData: [Int: Int] = [Int:Int]() // key - rowIndex, val - id
     var numberStories = 20
     var categoryUrl: String = "https://hacker-news.firebaseio.com/v0/topstories.json"
@@ -46,9 +42,11 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                     let id = self.brain.submissionIDs[i]
                     self.storyTableCellData[i] = id
                     self.brain.generateSubmissionForID(id) {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.refreshCell(i)
-                        })
+                        if i == self.numberStories - 1 {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.reformatCells()
+                            })
+                        }
                     }
                 } else { break }
             }
@@ -67,12 +65,14 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         brain.delegate = self
     }
     
+    // MARK: - format cell funcs
+    
     func refreshCell(row: Int) {
         let indexPath = NSIndexPath(forRow: row, inSection: 0)
         
         if isCellVisible(row) {
             tableView.beginUpdates()
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             tableView.endUpdates()
         }
     }
@@ -98,15 +98,17 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         return (nil, nil)
     }
     
-    private func formatURL(url: String) -> String{
+    private func formatURL(url: String) -> String {
         return NSURL(string: url)?.host ?? ""
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func reformatCells() {
+        for i in 0..<numberStories {
+            refreshCell(i)
+        }
     }
     
+    // MARK: - tableView funcs
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return CGFloat(80.0)
     }
@@ -150,9 +152,9 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                         wvc.pageTitle = cell.textLabel?.text
                         
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
-                            let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0)
-                            wvc.pageUrl = data?.url
-                            println(wvc.pageUrl)
+                            if let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0){
+                                wvc.pageUrl = data.url
+                            }
                         }
                     }
                 }
