@@ -91,8 +91,8 @@ class Submission: NSObject, NSCoding {
     }
     
     func save() {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self)
-        defaults.setObject(data, forKey: "\(self.id)")
+            let data = NSKeyedArchiver.archivedDataWithRootObject(self)
+            defaults.setObject(data, forKey: "\(self.id)")
     }
     
     class func loadSaved(id: Int) -> Submission? {
@@ -100,6 +100,15 @@ class Submission: NSObject, NSCoding {
             return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Submission
         }
         return nil
+    }
+    
+    class func doesExistWithID(id: Int) -> Bool {
+        let candidate = defaults.objectForKey("\(id)") as? NSData
+        
+        if candidate == nil {
+            return false
+        }
+        return true
     }
 }
 

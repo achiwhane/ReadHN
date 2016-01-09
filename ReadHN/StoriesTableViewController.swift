@@ -22,7 +22,7 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
         //tableView.rowHeight = UITableViewAutomaticDimension
         initDelegate(categoryUrl)
         initRefreshControl()
-        refresh()
+        //refresh()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -78,7 +78,7 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     }
     
     func isCellVisible(index: Int) -> Bool {
-        let visibleRows = tableView.indexPathsForVisibleRows()
+        let visibleRows = tableView.indexPathsForVisibleRows!
         
         if let indices = visibleRows as? [NSIndexPath] {
             for rowIndex in indices {
@@ -116,25 +116,33 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return numberStories
+        return numberStories + 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let dequeued: AnyObject = tableView.dequeueReusableCellWithIdentifier("storyCell", forIndexPath: indexPath)
         let cell = dequeued as! UITableViewCell
-        // get the id associated with the row
-        // pull the title and subtitle from the id
-        // and format cell
         
-        let headings = generateHeadingsforID(storyTableCellData[indexPath.row] ?? 0)
-
-        if let title = headings.title, subtitle = headings.subtitle {
-            cell.textLabel?.text = title
-            cell.textLabel?.font = UIFont.boldSystemFontOfSize(CGFloat(16.0))
-            cell.detailTextLabel?.text = subtitle
+        if indexPath.row == numberStories {
+            cell.textLabel?.text = "LOAD MORE STUFF"
+            cell.detailTextLabel?.text = ""
+            cell.contentView.backgroundColor? = UIColor.redColor()
+            
         } else {
-            cell.textLabel?.text = "Loading..."
-            cell.detailTextLabel?.text = "Loading..."
+            // get the id associated with the row
+            // pull the title and subtitle from the id
+            // and format cell
+            
+            let headings = generateHeadingsforID(storyTableCellData[indexPath.row] ?? 0)
+
+            if let title = headings.title, subtitle = headings.subtitle {
+                cell.textLabel?.text = title
+                cell.textLabel?.font = UIFont.boldSystemFontOfSize(CGFloat(16.0))
+                cell.detailTextLabel?.text = subtitle
+            } else {
+                cell.textLabel?.text = "Loading..."
+                cell.detailTextLabel?.text = "Loading..."
+            }
         }
         return cell
     }
@@ -152,8 +160,10 @@ class StoriesTableViewController: UITableViewController, StoryCategoryDelegate {
                         wvc.pageTitle = cell.textLabel?.text
                         
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
-                            if let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0){
-                                wvc.pageUrl = data.url
+                            if cellIndexPath.row != numberStories {
+                                if let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0){
+                                    wvc.pageUrl = data.url
+                                }
                             }
                         }
                     }

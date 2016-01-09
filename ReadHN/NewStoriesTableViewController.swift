@@ -10,8 +10,8 @@ import UIKit
 
 class NewStoriesTableViewController: StoriesTableViewController{
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
         updateUI()
     }
 
@@ -24,7 +24,7 @@ class NewStoriesTableViewController: StoriesTableViewController{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            println(identifier)
+            print(identifier)
             switch identifier {
             case "View New Content":
                 if let wvc = segue.destinationViewController as? WebViewController {

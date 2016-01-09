@@ -14,10 +14,12 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         self.tabBar.tintColor = UIColor.blackColor()
-        let tabItems = self.tabBar.items as! [UITabBarItem]
+        let tabItems = self.tabBar.items! as [UITabBarItem]
         
         for item in tabItems {
-            item.setTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -self.tabBar.bounds.midY/2))
+            item.titlePositionAdjustment.horizontal = 0
+            item.titlePositionAdjustment.vertical = -self.tabBar.bounds.midY/2
+            //item.titlePositionAdjustment(UIOffset(horizontal: 0, vertical: -self.tabBar.bounds.midY/2))
             let titleDict = [NSFontAttributeName: UIFont.systemFontOfSize(CGFloat(16))]
 
             

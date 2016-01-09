@@ -9,8 +9,10 @@
 import UIKit
 
 class AskHNStoriesTableViewContoller: StoriesTableViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         updateUI()
     }
     
@@ -30,7 +32,7 @@ class AskHNStoriesTableViewContoller: StoriesTableViewController{
                         if let cellIndexPath = self.tableView.indexPathForCell(cell) {
                             let data = Submission.loadSaved(storyTableCellData[cellIndexPath.row] ?? 0)
                             wvc.pageUrl = data?.url
-                            println(wvc.pageUrl)
+                            print(wvc.pageUrl)
                         }
                     }
                 }
